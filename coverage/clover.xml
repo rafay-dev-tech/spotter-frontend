@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1743792242025" clover="3.2.0">
+  <project timestamp="1743792242025" name="All files">
+    <metrics statements="53" coveredstatements="20" conditionals="20" coveredconditionals="10" methods="19" coveredmethods="9" elements="92" coveredelements="39" complexity="0" loc="53" ncloc="53" packages="5" files="10" classes="10"/>
+    <package name="src">
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="App.tsx" path="/home/dev/Downloads/spotter/spotter/frontend/src/App.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="/home/dev/Downloads/spotter/spotter/frontend/src/index.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="40" coveredstatements="20" conditionals="18" coveredconditionals="10" methods="17" coveredmethods="9"/>
+      <file name="ErrorBoundary.tsx" path="/home/dev/Downloads/spotter/spotter/frontend/src/components/ErrorBoundary.tsx">
+        <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+      </file>
+      <file name="LogSheet.tsx" path="/home/dev/Downloads/spotter/spotter/frontend/src/components/LogSheet.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="96" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="32" count="96" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="96" type="stmt"/>
+      </file>
+      <file name="Map.tsx" path="/home/dev/Downloads/spotter/spotter/frontend/src/components/Map.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+      </file>
+      <file name="TripForm.tsx" path="/home/dev/Downloads/spotter/spotter/frontend/src/components/TripForm.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="43" type="stmt"/>
+        <line num="16" count="43" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="21" count="43" type="stmt"/>
+        <line num="22" count="39" type="stmt"/>
+        <line num="23" count="39" type="stmt"/>
+        <line num="29" count="43" type="stmt"/>
+      </file>
+      <file name="TripPlanner.tsx" path="/home/dev/Downloads/spotter/spotter/frontend/src/components/TripPlanner.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.services">
+      <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="api.ts" path="/home/dev/Downloads/spotter/spotter/frontend/src/services/api.ts">
+        <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.types">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/home/dev/Downloads/spotter/spotter/frontend/src/types/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="leaflet-config.ts" path="/home/dev/Downloads/spotter/spotter/frontend/src/utils/leaflet-config.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
