@@ -7,21 +7,29 @@ import LogSheet from './LogSheet';
 import { Trip, RouteResponse } from '../types';
 import { planTrip } from '../services/api';
 import Map from './Map';
+import { toast } from 'react-toastify';
 
 const TripPlanner: React.FC = () => {
   const [tripData, setTripData] = useState<RouteResponse | null>(null);
   const [isClient, setIsClient] = useState(false);
+    const [isSpinner, setIsSpinner] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   const handleTripSubmit = async (tripDetails: Trip) => {
+    toast.info("Data Fetching....");
+    setIsSpinner(!isSpinner)
     try {
       const response = await planTrip(tripDetails);
       setTripData(response);
+      setIsSpinner(!isSpinner)
+      toast.success("Data Fetched Successfully!");
     } catch (error) {
+      setIsSpinner(false)
       console.error('Error planning trip:', error);
+      toast.error("Something went wrong!");
     }
   };
 
@@ -30,7 +38,7 @@ const TripPlanner: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <TripForm onSubmit={handleTripSubmit} />
+        <TripForm onSubmit={handleTripSubmit} isSpinner={isSpinner}/>
         {tripData && (
           <div className="mt-6">
             <h2 className="text-xl font-semibold mb-4">Trip Summary</h2>

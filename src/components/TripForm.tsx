@@ -1,21 +1,45 @@
 import React, { useState } from 'react';
 import { Trip } from '../types';
+import Spinner from 'utils/loader';
 
 interface TripFormProps {
     onSubmit: (trip: Trip) => void;
+    isSpinner?:boolean
 }
 
-const TripForm: React.FC<TripFormProps> = ({ onSubmit }) => {
+const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
     const [formData, setFormData] = useState<Trip>({
         current_location: '',
         pickup_location: '',
         dropoff_location: '',
         current_cycle_hours: 0
     });
+    const [errors, setErrors] = useState({
+        current_location: '',
+        pickup_location: '',
+        dropoff_location: '',
+        current_cycle_hours: ''
+    });
+
+    const validate = () => {
+        const newErrors = {
+            current_location: formData.current_location ? '' : 'Current Location is required',
+            pickup_location: formData.pickup_location ? '' : 'Pickup Location is required',
+            dropoff_location: formData.dropoff_location ? '' : 'Dropoff Location is required',
+            current_cycle_hours: formData.current_cycle_hours >= 0 && formData.current_cycle_hours <= 70 ? '' : 'Cycle Hours must be between 0 and 70'
+        };
+
+        setErrors(newErrors);
+        return !Object.values(newErrors).some((error) => error !== '');
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit(formData);
+
+        if (validate()) {
+            onSubmit(formData);
+        }
+
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,8 +64,11 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit }) => {
                         value={formData.current_location}
                         onChange={handleChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        required
+                        
                     />
+                       {errors.current_location && (
+                        <p className="text-red-500 text-sm">{errors.current_location}</p>
+                    )}
                 </div>
                 <div>
                     <label htmlFor="pickup_location" className="block text-sm font-medium text-gray-700">
@@ -54,8 +81,11 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit }) => {
                         value={formData.pickup_location}
                         onChange={handleChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        required
+                        
                     />
+                       {errors.pickup_location && (
+                        <p className="text-red-500 text-sm">{errors.pickup_location}</p>
+                    )}
                 </div>
                 <div>
                     <label htmlFor="dropoff_location" className="block text-sm font-medium text-gray-700">
@@ -68,8 +98,11 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit }) => {
                         value={formData.dropoff_location}
                         onChange={handleChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        required
+                        
                     />
+                      {errors.dropoff_location && (
+                        <p className="text-red-500 text-sm">{errors.dropoff_location}</p>
+                    )}
                 </div>
                 <div>
                     <label htmlFor="current_cycle_hours" className="block text-sm font-medium text-gray-700">
@@ -85,14 +118,17 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit }) => {
                         max="70"
                         step="0.5"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        required
+                        
                     />
+                       {errors.current_cycle_hours && (
+                        <p className="text-red-500 text-sm">{errors.current_cycle_hours}</p>
+                    )}
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="w-full flex justify-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
-                    Plan Trip
+                    Plan Trip {isSpinner &&  <span className='ml-3'><Spinner /></span> }
                 </button>
             </div>
         </form>

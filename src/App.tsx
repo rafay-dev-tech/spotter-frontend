@@ -1,5 +1,6 @@
 import React from 'react';
 import TripPlanner from './components/TripPlanner';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         </div>
       </header>
       <main>
+      <ToastContainer />
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <TripPlanner />
         </div>
