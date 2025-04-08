@@ -24,8 +24,8 @@ const TripPlanner: React.FC = () => {
     try {
       const response = await planTrip(tripDetails);
       setTripData(response);
-      setIsSpinner(!isSpinner)
       toast.success("Data Fetched Successfully!");
+      setIsSpinner(false)
     } catch (error) {
       setIsSpinner(false)
       console.error('Error planning trip:', error);
