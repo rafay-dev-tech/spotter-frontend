@@ -65,7 +65,7 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                             value={formData.current_location}
                             onChange={handleChange}
                             className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Type your custom location"
+                            placeholder="Type your current location"
                         />
                     
                     {errors.current_location && (
@@ -85,6 +85,7 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                         value={formData.pickup_location}
                         onChange={handleChange}
                         className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                         placeholder="Type your pickup location"
                     />
                     {errors.pickup_location && (
                         <p className="text-red-500 text-sm mt-1">{errors.pickup_location}</p>
@@ -103,6 +104,7 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                         value={formData.dropoff_location}
                         onChange={handleChange}
                         className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Type your dropoff_location location"
                     />
                     {errors.dropoff_location && (
                         <p className="text-red-500 text-sm mt-1">{errors.dropoff_location}</p>
