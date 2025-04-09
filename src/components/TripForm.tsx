@@ -104,7 +104,7 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                         value={formData.dropoff_location}
                         onChange={handleChange}
                         className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Type your dropoff_location location"
+                        placeholder="Type your dropoff location"
                     />
                     {errors.dropoff_location && (
                         <p className="text-red-500 text-sm mt-1">{errors.dropoff_location}</p>
