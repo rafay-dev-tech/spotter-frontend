@@ -19,7 +19,6 @@ const TripPlanner: React.FC = () => {
   }, []);
 
   const handleTripSubmit = async (tripDetails: Trip) => {
-    toast.info("Data Fetching....");
     setIsSpinner(!isSpinner)
     try {
       const response = await planTrip(tripDetails);

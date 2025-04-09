@@ -20,7 +20,6 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
         dropoff_location: '',
         current_cycle_hours: ''
     });
-    const [isCustomLocation, setIsCustomLocation] = useState(false);
 
     const validate = () => {
         const newErrors = {
@@ -49,19 +48,6 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
         }));
     };
 
-    const handleLocationSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = e.target.value;
-        if (selectedValue === 'custom') {
-            setIsCustomLocation(true);
-        } else {
-            setIsCustomLocation(false);
-            setFormData({
-                ...formData,
-                current_location: selectedValue
-            });
-        }
-    };
-
     return (
         <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-xl max-w-lg mx-auto space-y-6">
             <h2 className="text-2xl font-semibold text-gray-800 text-center">Plan Your Trip</h2>
@@ -71,22 +57,7 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                     <label htmlFor="current_location" className="text-sm font-medium text-gray-700">
                         Current Location
                     </label>
-                    <select
-                        id="current_location"
-                        name="current_location"
-                        value={formData.current_location}
-                        onChange={handleLocationSelectChange}
-                        className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="">Select your location</option>
-                        <option value="New York">New York</option>
-                        <option value="Los Angeles">Los Angeles</option>
-                        <option value="Chicago">Chicago</option>
-                        <option value="San Francisco">San Francisco</option>
-                        <option value="Miami">Miami</option>
-                        <option value="custom">Other (Type Below)</option>
-                    </select>
-                    {isCustomLocation && (
+
                         <input
                             id="current_location"
                             type="text"
@@ -96,7 +67,7 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                             className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Type your custom location"
                         />
-                    )}
+                    
                     {errors.current_location && (
                         <p className="text-red-500 text-sm mt-1">{errors.current_location}</p>
                     )}
