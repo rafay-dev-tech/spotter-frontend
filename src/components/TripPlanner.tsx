@@ -24,12 +24,11 @@ const TripPlanner: React.FC = () => {
     try {
       const response = await planTrip(tripDetails);
       setTripData(response);
-      toast.success("Data Fetched Successfully!");
       setIsSpinner(false)
-    } catch (error) {
+    } catch (error :any) {
       setIsSpinner(false)
       console.error('Error planning trip:', error);
-      toast.error("Something went wrong!");
+      toast.error(`Error planning trip: ${error?.response?.data?.error ? "Invalid Location" : ""}`);
     }
   };
 

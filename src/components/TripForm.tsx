@@ -4,7 +4,7 @@ import Spinner from 'utils/loader';
 
 interface TripFormProps {
     onSubmit: (trip: Trip) => void;
-    isSpinner?:boolean
+    isSpinner?: boolean;
 }
 
 const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
@@ -20,6 +20,7 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
         dropoff_location: '',
         current_cycle_hours: ''
     });
+    const [isCustomLocation, setIsCustomLocation] = useState(false);
 
     const validate = () => {
         const newErrors = {
@@ -35,14 +36,12 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
         if (validate()) {
             onSubmit(formData);
         }
-
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -50,28 +49,62 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
         }));
     };
 
+    const handleLocationSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = e.target.value;
+        if (selectedValue === 'custom') {
+            setIsCustomLocation(true);
+        } else {
+            setIsCustomLocation(false);
+            setFormData({
+                ...formData,
+                current_location: selectedValue
+            });
+        }
+    };
+
     return (
-        <form onSubmit={handleSubmit} className="bg-white shadow rounded-lg p-6">
-            <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-xl max-w-lg mx-auto space-y-6">
+            <h2 className="text-2xl font-semibold text-gray-800 text-center">Plan Your Trip</h2>
+            <div className="space-y-6">
+                {/* Current Location Section */}
                 <div>
-                    <label htmlFor="current_location" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="current_location" className="text-sm font-medium text-gray-700">
                         Current Location
                     </label>
-                    <input
+                    <select
                         id="current_location"
-                        type="text"
                         name="current_location"
                         value={formData.current_location}
-                        onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        
-                    />
-                       {errors.current_location && (
-                        <p className="text-red-500 text-sm">{errors.current_location}</p>
+                        onChange={handleLocationSelectChange}
+                        className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="">Select your location</option>
+                        <option value="New York">New York</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="San Francisco">San Francisco</option>
+                        <option value="Miami">Miami</option>
+                        <option value="custom">Other (Type Below)</option>
+                    </select>
+                    {isCustomLocation && (
+                        <input
+                            id="current_location"
+                            type="text"
+                            name="current_location"
+                            value={formData.current_location}
+                            onChange={handleChange}
+                            className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Type your custom location"
+                        />
+                    )}
+                    {errors.current_location && (
+                        <p className="text-red-500 text-sm mt-1">{errors.current_location}</p>
                     )}
                 </div>
+
+                {/* Pickup Location */}
                 <div>
-                    <label htmlFor="pickup_location" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="pickup_location" className="text-sm font-medium text-gray-700">
                         Pickup Location
                     </label>
                     <input
@@ -80,15 +113,16 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                         name="pickup_location"
                         value={formData.pickup_location}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        
+                        className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                       {errors.pickup_location && (
-                        <p className="text-red-500 text-sm">{errors.pickup_location}</p>
+                    {errors.pickup_location && (
+                        <p className="text-red-500 text-sm mt-1">{errors.pickup_location}</p>
                     )}
                 </div>
+
+                {/* Dropoff Location */}
                 <div>
-                    <label htmlFor="dropoff_location" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="dropoff_location" className="text-sm font-medium text-gray-700">
                         Dropoff Location
                     </label>
                     <input
@@ -97,15 +131,16 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                         name="dropoff_location"
                         value={formData.dropoff_location}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        
+                        className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                      {errors.dropoff_location && (
-                        <p className="text-red-500 text-sm">{errors.dropoff_location}</p>
+                    {errors.dropoff_location && (
+                        <p className="text-red-500 text-sm mt-1">{errors.dropoff_location}</p>
                     )}
                 </div>
+
+                {/* Cycle Hours */}
                 <div>
-                    <label htmlFor="current_cycle_hours" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="current_cycle_hours" className="text-sm font-medium text-gray-700">
                         Current Cycle Hours
                     </label>
                     <input
@@ -117,22 +152,23 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, isSpinner }) => {
                         min="0"
                         max="70"
                         step="0.5"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        
+                        className="mt-2 block w-full p-3 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                       {errors.current_cycle_hours && (
-                        <p className="text-red-500 text-sm">{errors.current_cycle_hours}</p>
+                    {errors.current_cycle_hours && (
+                        <p className="text-red-500 text-sm mt-1">{errors.current_cycle_hours}</p>
                     )}
                 </div>
+
+                {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full flex justify-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="w-full py-3 flex justify-center bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition"
                 >
-                    Plan Trip {isSpinner &&  <span className='ml-3'><Spinner /></span> }
+                    Plan Trip {isSpinner && <span className="ml-3"><Spinner /></span>}
                 </button>
             </div>
         </form>
     );
 };
 
-export default TripForm; 
+export default TripForm;
