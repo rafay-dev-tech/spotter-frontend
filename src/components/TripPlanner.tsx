@@ -27,7 +27,7 @@ const TripPlanner: React.FC = () => {
     } catch (error :any) {
       setIsSpinner(false)
       console.error('Error planning trip:', error);
-      toast.error(`Error planning trip: ${error?.response?.data?.error ? "Invalid Location" : ""}`);
+      toast.error(`${error?.response?.data?.errors[0]}`);
     }
   };
 
